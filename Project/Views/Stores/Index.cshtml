@@ -1,0 +1,124 @@
+﻿@model Project.Models.StoreViewModel
+
+@{
+    ViewBag.Title = "Stores";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.HiddenFor(model => model.StoreId)
+
+<p>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addStoreModal" id="addStore">Add new store</button>
+</p>
+
+<table class="table table-striped" id="storeTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreAddress)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+
+<!-- Add a store modal -->
+<div class="modal fade" id="addStoreModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new store</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.StoreName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.StoreAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="addStore()">Add store</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit a store modal -->
+<div class="modal fade" id="editStoreModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Store details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.StoreName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.StoreAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="editStore()">Save</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete a store modal -->
+<div class="modal fade" id="deleteStoreModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete store?</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <label class="control-label" id="Name"></label>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <label class="control-label" id="Address"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="deleteStore()">Delete</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Store.js"></script>

@@ -1,0 +1,161 @@
+﻿@model Project.Models.ProductSoldViewModel
+
+@{
+    ViewBag.Title = "Sales";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.HiddenFor(model => model.ProductSoldID)
+
+<p>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSaleModal" id="addSale">Add new sale</button>
+</p>
+
+<table class="table table-striped" id="saleTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+
+<!-- Add a sale modal -->
+<div class="modal fade" id="addSaleModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new sale</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("StoreId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DateSold, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.DateSold, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="addSale()">Add sale</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit a sale modal -->
+<div class="modal fade" id="editSaleModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sale details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("StoreId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DateSold, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.DateSold, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="editSale()">Save</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete a sale modal -->
+<div class="modal fade" id="deleteSaleModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete sale?</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("StoreId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DateSold, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.DateSold, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="deleteSale()">Delete</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Sale.js"></script>

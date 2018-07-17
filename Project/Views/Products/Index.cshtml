@@ -1,0 +1,123 @@
+﻿@model Project.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.HiddenFor(model => model.ProductId)
+
+<p>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addProductModal" id="addProduct">Add new product</button>
+</p>
+
+<table class="table table-striped" id="productTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+
+<!-- Add a product modal -->
+<div class="modal fade" id="addProductModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new product</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="addProduct()">Add product</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit a product modal -->
+<div class="modal fade" id="editProductModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Product details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="editProduct()">Save</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete a product modal -->
+<div class="modal fade" id="deleteProductModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete product?</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <label class="control-label" id="ProductName"></label>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <label class="control-label" id="ProductPrice"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button class="btn btn-default" data-dismiss="modal" onclick="deleteProduct()">Delete</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Products.js"></script>
